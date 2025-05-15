@@ -10,8 +10,11 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(zero_interfaces REQUIRED)
 
-add_executable(cmd_publisher src/cmd_publisher.cpp)
-ament_target_dependencies(cmd_publisher rclcpp zero_interfaces)
+add_executable(zero_controller src/zero_controller.cpp)
+ament_target_dependencies(zero_controller rclcpp zero_interfaces)
+
+add_executable(teleop_keyboard src/teleop_keyboard.cpp)
+ament_target_dependencies(teleop_keyboard rclcpp zero_interfaces)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -26,7 +29,8 @@ if(BUILD_TESTING)
 endif()
 
 install(TARGETS
-  cmd_publisher
+  zero_controller
+  teleop_keyboard
   DESTINATION lib/${PROJECT_NAME})
 
 ament_package()
